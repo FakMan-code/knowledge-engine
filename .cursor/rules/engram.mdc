@@ -1,0 +1,54 @@
+---
+description: Engram persistent memory protocol for this project
+alwaysApply: true
+---
+
+# Engram Persistent Memory
+
+You have access to Engram persistent memory via MCP tools (`mem_save`, `mem_search`, `mem_context`, `mem_session_summary`, `mem_get_observation`, `mem_suggest_topic_key`, `mem_update`, `mem_capture_passive`).
+
+This repo's Engram project name is `noc-proyecto`. It is auto-detected from the
+parent git repository at `C:\Users\mglembo\NOC-Proyecto`. Do not pass
+`knowledge-engine` as the project: that project does not exist in the store and
+the call fails with `unknown_project`.
+
+## WHAT BELONGS IN ENGRAM
+
+Durable knowledge that helps a future agent decide well: the product objective,
+decisions and their reasons, constraints, conventions, stable findings about the
+repository, known problems, reusable lessons, and open items that matter.
+
+Not in Engram: raw logs, transient test output, stack traces, embeddings,
+chunks, exhaustive catalogs, a diary of each run, or anything retrievable by
+just reading the current code. A crude test result is noise; the stable lesson
+drawn from it is memory.
+
+Keep three things separate. Engram is durable working memory for the agent.
+These rules are mandatory behaviour. The product's own store is what the product
+discovered about the systems it analysed.
+
+## WHEN TO SAVE (mandatory)
+
+Call `mem_save` immediately after: bug fixes, architecture/design decisions, non-obvious discoveries, config/environment setup, established patterns, and learned user preferences.
+
+Format:
+- **title**: Verb + what (short, searchable)
+- **type**: bugfix | decision | architecture | discovery | pattern | config | preference
+- **scope**: project (default) | personal
+- **topic_key**: reuse a stable key for evolving topics
+- **content**: What / Why / Where / Learned
+
+## WHEN TO SEARCH
+
+On recall requests ("remember", "recordar", "qué hicimos") or when starting related work:
+1. `mem_context`
+2. If needed, `mem_search`
+3. If needed, `mem_get_observation`
+
+## SESSION CLOSE
+
+Before ending a session, call `mem_session_summary` with Goal, Instructions, Discoveries, Accomplished, Next Steps, Relevant Files.
+
+## AFTER COMPACTION
+
+First `mem_session_summary` with the compacted summary, then `mem_context`, then continue.

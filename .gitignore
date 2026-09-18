@@ -1,0 +1,22 @@
+# Runtime data. Never commit ingested material.
+store/
+blobs/
+*.db
+*.db-wal
+*.db-shm
+
+# Local config may point at private sources.
+config.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS
+Thumbs.db
+.DS_Store
